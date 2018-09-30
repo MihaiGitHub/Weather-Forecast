@@ -22,9 +22,14 @@ export default class SearchBar extends Component {
         this.setState({ term: event.target.value });
     }
 
+    onFormSubmit(event){
+        // Do not submit form on carriage return
+        event.preventDefault();
+    }
+
     render(){
         return (
-            <form className="input-group">
+            <form onSubmit={this.onFormSubmit} className="input-group">
                 <input 
                     placeholder="Get a 5-day forecast in your favorite cities"
                     className="form-control"
