@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
-import { connect } from 'net';
+import { connect } from 'react-redux';
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 
 class WeatherList extends Component {
     renderWeather(cityData){
-        const name = cityData.city.name;
+         const name = cityData.city.name;
         // Pull off an array of temperatures
         // Map over the list of all the different forecasts for each city
         // Inside of map pass a function; All items inside list array will be passed to this function as the argument weather
         const temps = cityData.list.map(weather => weather.main.temp); // Returns the temperature for each row inside list
 
-        <tr key={name}>
-            <td>{name}</td>
-        </tr>
+        return (
+            <tr key={name}>
+                <td>{name}</td>
+                <td>
+                    <Sparklines height={120} width={180} data={temps}>
+                        <SparklinesLine color="red" />
+                    </Sparklines>
+                </td>
+            </tr>
+        );
     }
 
     // this.props.weather is the array of objects (cities)
     render() {
+        console.log('this.props ',this.props)
         return (
             <table className="table table-hover">
                 <thead>
