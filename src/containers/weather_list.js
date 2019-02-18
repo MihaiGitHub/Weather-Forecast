@@ -10,12 +10,15 @@ class WeatherList extends Component {
         // Inside of map pass a function; All items inside list array will be passed to this function as the argument weather
         const temps = cityData.list.map(weather => weather.main.temp); // Returns the temperature for each row inside list
 
+        const pressures = cityData.list.map(weather => weather.main.pressure);
+        const humidities = cityData.list.map(weather => weather.main.humidity);
+
         return (
             <tr key={name}>
                 <td>{name}</td>
-                <td>
-                    <Chart data={temps} color="orange" />
-                </td>
+                <td><Chart data={temps} color="orange" /></td>
+                <td><Chart data={pressures} color="green" /></td>
+                <td><Chart data={humidities} color="black" /></td>
             </tr>
         );
     }
